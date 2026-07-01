@@ -17,7 +17,7 @@ const pizzaImg = {
   supreme: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=400&q=80",
   special: "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=400&q=80",
   burger: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80",
-  zinger: "/zinger-burger.png",
+  zinger: "/Zinger-Burger.png",
   zingerJumbo: "/Zinger-Burger-Jumbo.png",
   sandwich: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&q=80",
   fries: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&q=80",
