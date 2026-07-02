@@ -115,7 +115,7 @@ export default function Hero() {
           color: "rgba(255,255,255,0.35)", fontSize: 13,
           marginTop: "1.5rem",
         }}>
-          📍 Saeedabad, Baldia Town, Karachi
+          📍 Saeedabad, Baldia Town, Karachi.
         </p>
       </div>
     </section>

@@ -306,10 +306,15 @@ export default function Home() {
           </button>
         </div>
       </div>
-
-      <div style={{ background: "#0d0500", color: "rgba(255,255,255,0.35)", textAlign: "center", padding: "16px", fontSize: 12 }}>
-        <p>© 2026 Scholar Pizza · Saeedabad, Baldia Town, Karachi</p>
+ <div style={{ background: "#0d0500", color: "rgba(255,255,255,0.35)", textAlign: "center", padding: "16px", fontSize: 12 }}>
+        <p>© 2026 Scholar Pizza · Sector 5J, Saeedabad, Baldia Town, Karachi.</p>
         <p style={{ marginTop: 4 }}>Made with ❤️ for our community</p>
+        <p style={{ marginTop: 8, paddingTop: 8, borderTop: "1px solid rgba(255,255,255,0.08)", fontSize: 11 }}>
+          Crafted by{" "}
+          <a href="https://wa.me/923082787558" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.55)", fontWeight: 600, textDecoration: "none" }}>
+            Obaid Ur Rehman
+          </a>
+        </p>
       </div>
 
       {count > 0 && !cartOpen && (
