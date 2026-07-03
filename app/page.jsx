@@ -66,7 +66,7 @@ function ItemCard({ item, onAdd }) {
 }
 
 function CartSheet({ cart, updateQty, removeItem, total, onClose, onOrder }) {
-  const [step, setStep] = useState("cart"); // cart -> checkout
+  const [step, setStep] = useState("cart");
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [customerAddress, setCustomerAddress] = useState("");
@@ -225,37 +225,50 @@ export default function Home() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#f9f6f2" }}>
-      <nav style={{ position: "sticky", top: 0, zIndex: 100, background: "#1a0a00", padding: "0 16px", height: 60, display: "flex", alignItems: "center", justifyContent: "space-between", boxShadow: "0 2px 12px rgba(0,0,0,0.3)" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <img src="/newlogo_ScholarPizza.png" alt="Scholar Pizza" style={{ width: 38, height: 38, borderRadius: "50%", objectFit: "cover" }} />
+<nav style={{ position: "sticky", top: 0, zIndex: 100, background: "rgba(20,9,3,0.92)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", padding: "10px 16px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(255,140,66,0.15)", boxShadow: "0 4px 20px rgba(0,0,0,0.25)" }}> 
+         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div style={{ position: "relative" }}>
+            <div style={{ position: "absolute", inset: -2, borderRadius: "50%", background: "linear-gradient(135deg, #ff8c42, #ffc107)", opacity: 0.6, filter: "blur(4px)" }} />
+            <img src="/newlogo_ScholarPizza.png" alt="Scholar Pizza" style={{ position: "relative", width: 38, height: 38, borderRadius: "50%", objectFit: "cover", border: "1.5px solid rgba(255,255,255,0.2)" }} />
+          </div>
           <div>
-            <div style={{ color: "#fff", fontWeight: 800, fontSize: 15, lineHeight: 1.1 }}>Scholar Pizza</div>
-            <div style={{ color: "#c9933a", fontSize: 10 }}>⏰ 12PM – 2AM</div>
+            <div style={{ color: "#fff", fontWeight: 800, fontSize: 15, lineHeight: 1.1, letterSpacing: "-0.3px" }}>Scholar Pizza</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 4, color: "#ff8c42", fontSize: 10, fontWeight: 600 }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#2fd669", display: "inline-block" }} />
+              Open · 12PM – 2AM
+            </div>
           </div>
         </div>
-        <div style={{ display: "flex", gap: 8 }}>
-          <a href={`tel:+92${restaurant.phone.slice(1)}`} style={{ background: "rgba(255,255,255,0.1)", color: "#fff", borderRadius: 8, padding: "6px 12px", fontSize: 13, fontWeight: 600, border: "1px solid rgba(255,255,255,0.15)" }}>📞 Call</a>
-          <button onClick={() => setCartOpen(true)} style={{ background: "#c0340d", color: "#fff", border: "none", borderRadius: 8, padding: "6px 12px", fontSize: 13, fontWeight: 700, cursor: "pointer", position: "relative" }}>
-            🛒 {count > 0 && <span style={{ position: "absolute", top: -6, right: -6, background: "#25d366", color: "#fff", borderRadius: "50%", width: 18, height: 18, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 800 }}>{count}</span>}
-            Cart
+        <div style={{ display: "flex", gap: 6 }}>
+          <a href={`tel:+92${restaurant.phone.slice(1)}`} style={{ width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(255,255,255,0.08)", color: "#fff", borderRadius: 10, fontSize: 15, border: "1px solid rgba(255,255,255,0.1)" }}>📞</a>
+          <button onClick={() => setCartOpen(true)} style={{ background: "linear-gradient(135deg, #ff5e3a, #c0340d)", color: "#fff", border: "none", borderRadius: 10, padding: "0 14px", height: 36, fontSize: 13, fontWeight: 700, cursor: "pointer", position: "relative", boxShadow: "0 4px 14px rgba(192,52,13,0.4)", display: "flex", alignItems: "center", gap: 5 }}>
+            🛒 Cart
+            {count > 0 && <span style={{ position: "absolute", top: -6, right: -6, background: "#2fd669", color: "#fff", borderRadius: "50%", width: 18, height: 18, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 800, boxShadow: "0 0 0 2px #140903" }}>{count}</span>}
           </button>
         </div>
       </nav>
 
-      <div style={{ background: "linear-gradient(160deg, #1a0a00, #2d1200)", padding: "32px 20px 36px", textAlign: "center" }}>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 16 }}>
-          <img src="/newlogo_ScholarPizza.png" alt="Scholar Pizza" style={{ width: 110, height: 110, borderRadius: "50%", border: "3px solid rgba(201,147,58,0.5)", objectFit: "cover" }} />
+      <div style={{ position: "relative", overflow: "hidden", background: "radial-gradient(ellipse 80% 60% at 50% -10%, #3a1503 0%, #150800 55%, #0a0400 100%)", padding: "40px 20px 44px", textAlign: "center" }}>
+        <div style={{ position: "absolute", top: -80, left: "50%", transform: "translateX(-50%)", width: 380, height: 380, background: "radial-gradient(circle, rgba(255,94,58,0.25) 0%, rgba(255,94,58,0) 70%)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", bottom: -60, right: -40, width: 220, height: 220, background: "radial-gradient(circle, rgba(255,193,7,0.12) 0%, rgba(255,193,7,0) 70%)", pointerEvents: "none" }} />
+        <div style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 18 }}>
+          <div style={{ position: "relative" }}>
+            <div style={{ position: "absolute", inset: -6, borderRadius: "50%", background: "linear-gradient(135deg, #ff8c42, #c0340d)", opacity: 0.5, filter: "blur(10px)" }} />
+            <img src="/newlogo_ScholarPizza.png" alt="Scholar Pizza" style={{ position: "relative", width: 108, height: 108, borderRadius: "50%", border: "3px solid rgba(255,255,255,0.15)", objectFit: "cover" }} />
+          </div>
         </div>
-        <h1 style={{ color: "#fff", fontSize: 26, fontWeight: 900, lineHeight: 1.2, marginBottom: 6 }}>Scholar Pizza 🎓</h1>
-        <p style={{ color: "rgba(255,255,255,0.6)", fontSize: 14, marginBottom: 20 }}>Premium Quality · Premium Taste</p>
-        <div style={{ display: "flex", gap: 8, justifyContent: "center", flexWrap: "wrap", marginBottom: 20 }}>
+        <h1 style={{ position: "relative", color: "#fff", fontSize: 30, fontWeight: 900, lineHeight: 1.15, marginBottom: 8, letterSpacing: "-0.5px" }}>
+          Scholar <span style={{ background: "linear-gradient(135deg, #ff8c42, #ffc107)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Pizza</span> 🎓
+        </h1>
+        <p style={{ position: "relative", color: "rgba(255,255,255,0.55)", fontSize: 14, marginBottom: 22, fontWeight: 500 }}>Premium Quality · Premium Taste</p>
+        <div style={{ position: "relative", display: "flex", gap: 8, justifyContent: "center", flexWrap: "wrap", marginBottom: 24 }}>
           {["🪑 Dine In", "📦 Takeaway", "🛵 Delivery"].map((s) => (
-            <span key={s} style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.8)", borderRadius: 20, padding: "4px 12px", fontSize: 12 }}>{s}</span>
+            <span key={s} style={{ background: "rgba(255,255,255,0.06)", backdropFilter: "blur(6px)", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.85)", borderRadius: 20, padding: "5px 13px", fontSize: 12, fontWeight: 500 }}>{s}</span>
           ))}
         </div>
-        <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
-          <button onClick={() => { window.location.href = `https://wa.me/${restaurant.whatsapp}?text=${encodeURIComponent("Hi! I want to order.")}`; }} style={{ background: "#25d366", color: "#fff", border: "none", borderRadius: 12, padding: "12px 22px", fontSize: 15, fontWeight: 800, cursor: "pointer" }}>📱 Order on WhatsApp</button>
-          <a href={`tel:+92${restaurant.phone.slice(1)}`} style={{ background: "transparent", color: "#fff", border: "2px solid rgba(255,255,255,0.3)", borderRadius: 12, padding: "12px 22px", fontSize: 15, fontWeight: 700 }}>📞 Call Now</a>
+        <div style={{ position: "relative", display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
+          <button onClick={() => { window.location.href = `https://wa.me/${restaurant.whatsapp}?text=${encodeURIComponent("Hi! I want to order.")}`; }} style={{ background: "linear-gradient(135deg, #2fd669, #1eaa50)", color: "#fff", border: "none", borderRadius: 14, padding: "13px 24px", fontSize: 15, fontWeight: 800, cursor: "pointer", boxShadow: "0 6px 20px rgba(37,211,102,0.35)" }}>📱 Order on WhatsApp</button>
+          <a href={`tel:+92${restaurant.phone.slice(1)}`} style={{ background: "rgba(255,255,255,0.06)", backdropFilter: "blur(6px)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.25)", borderRadius: 14, padding: "13px 24px", fontSize: 15, fontWeight: 700 }}>📞 Call Now</a>
         </div>
       </div>
 
