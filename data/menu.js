@@ -8,25 +8,7 @@ export const restaurant = {
   services: ["Dine In", "Takeaway", "Delivery"],
 };
 
-const pizzaImg = {
-  default: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&q=80",
-  tikka: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80",
-  fajita: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&q=80",
-  spicy: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&q=80",
-  veggie: "https://images.unsplash.com/photo-1552539618-7eec9b4d1796?w=400&q=80",
-  supreme: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=400&q=80",
-  special: "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=400&q=80",
-  burger: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80",
-  zinger: "/Zinger-Burger.png",
-  zingerJumbo: "/Zinger-Burger-Jumbo.png",
-  sandwich: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&q=80",
-  fries: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&q=80",
-  nuggets: "https://images.unsplash.com/photo-1562802378-063ec186a863?w=400&q=80",
-  wings: "https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=400&q=80",
-  pasta: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&q=80",
-  deal: "https://images.unsplash.com/photo-1600628421055-4d30de868b8f?w=400&q=80",
-  garlic: "https://images.unsplash.com/photo-1573821663912-569905455b1c?w=400&q=80",
-};
+
 
 export const categories = [
   {
@@ -68,8 +50,8 @@ export const categories = [
     emoji: "🍔",
     desc: "Crispy & juicy burgers",
     items: [
-      { id: 18, name: "Zinger Burger", desc: "Crispy fried chicken fillet with zinger sauce & coleslaw", price: 500, hasSize: false, img: pizzaImg.zinger, tag: "Bestseller" },
-{ id: 19, name: "Zinger Burger Jumbo", desc: "Extra large crispy zinger with double sauce", price: 650, hasSize: false, img: pizzaImg.zingerJumbo, tag: "Big Size" },     
+    { id: 18, name: "Zinger Burger", desc: "Crispy fried chicken fillet with zinger sauce & coleslaw", price: 500, hasSize: false, img: "/Zinger-Burger.png", tag: "Bestseller" },
+{ id: 19, name: "Zinger Burger Jumbo", desc: "Extra large crispy zinger with double sauce", price: 650, hasSize: false, img: "/Zinger-Burger-Jumbo.png", tag: "Big Size" },
  { id: 20, name: "Chicken Burger", desc: "Juicy grilled chicken patty with fresh veggies", price: 349, hasSize: false, img: "/Chicken-Burger.png" },
 { id: 21, name: "Pizza Burger", desc: "The best of both worlds — pizza sauce meets burger", price: 449, hasSize: false, img: "/Pizza-Burger.png", tag: "Unique" },
     ],
@@ -132,20 +114,20 @@ items: [
     label: "Value Deals",
     emoji: "🔥",
     desc: "Best value combos",
-    items: [
-      { id: 43, name: "Special Deal 1", desc: "1 Small Pizza of your choice", price: 500, hasSize: false, img: pizzaImg.deal, tag: "🔥 Deal" },
-      { id: 44, name: "Special Deal 2", desc: "1 Regular Pizza of your choice", price: 750, hasSize: false, img: pizzaImg.deal, tag: "🔥 Deal" },
-      { id: 45, name: "Special Deal 3", desc: "1 Large Pizza of your choice", price: 1000, hasSize: false, img: pizzaImg.deal, tag: "🔥 Deal" },
-      { id: 46, name: "Fast Food Deal 1", desc: "1 Zinger Burger + 1 Chicken Burger + Fries & Coleslaw + Cold Drink 345ml", price: 999, hasSize: false, img: pizzaImg.deal, tag: "Popular" },
-      { id: 47, name: "Fast Food Deal 2", desc: "2 Zinger Burger + 1 Chicken Burger + Pizza Fries + Fries & Coleslaw + 2 Cold Drinks", price: 1299, hasSize: false, img: pizzaImg.deal, tag: "Family" },
-      { id: 48, name: "Fast Food Deal 3", desc: "2 Zinger + 2 Chicken Burger + Chicken Pasta + Fries & Coleslaw + 2 Cold Drinks", price: 1399, hasSize: false, img: pizzaImg.deal, tag: "Family" },
-      { id: 49, name: "Midnight Deal 1", desc: "2 Regular Pizzas of your choice", price: 1299, hasSize: false, img: pizzaImg.deal, tag: "🌙 Late Night" },
-      { id: 50, name: "Midnight Deal 2", desc: "1 Zinger Burger + 1 Regular Pizza + Pizza Fries", price: 749, hasSize: false, img: pizzaImg.deal, tag: "🌙 Late Night" },
-      { id: 51, name: "Midnight Deal 3", desc: "5 Zinger Burgers with Fries", price: 1499, hasSize: false, img: pizzaImg.deal, tag: "🌙 Late Night" },
-      { id: 52, name: "Midnight Deal 4", desc: "1 Regular Pizza + 1 Large Pizza + 1 Small Pizza", price: 1999, hasSize: false, img: pizzaImg.deal, tag: "🌙 Late Night" },
-      { id: 53, name: "Midnight Deal 5", desc: "1 Turkish Pizza Large + 1 Crown Pizza Large", price: 2499, hasSize: false, img: pizzaImg.deal, tag: "Premium" },
-      { id: 54, name: "Midnight Deal 6", desc: "3 Large Pizzas of your choice", price: 2600, hasSize: false, img: pizzaImg.deal, tag: "Party" },
-      { id: 55, name: "Midnight Full Deal", desc: "1 Turkish Pizza Large + 1 Crown Pizza Large + Chicken Pasta + Chicken Lasania + Chicken Wings 5pcs", price: 3999, hasSize: false, img: pizzaImg.deal, tag: "🎉 Ultimate" },
+   items: [
+      { id: 43, name: "Special Deal 1", desc: "1 Small Pizza of your choice", price: 500, hasSize: false, img: "/newlogo_ScholarPizza.png", tag: "🔥 Deal" },
+      { id: 44, name: "Special Deal 2", desc: "1 Regular Pizza of your choice", price: 750, hasSize: false, img: "/newlogo_ScholarPizza.png", tag: "🔥 Deal" },
+      { id: 45, name: "Special Deal 3", desc: "1 Large Pizza of your choice", price: 1000, hasSize: false, img: "/newlogo_ScholarPizza.png", tag: "🔥 Deal" },
+      { id: 46, name: "Fast Food Deal 1", desc: "1 Zinger Burger + 1 Chicken Burger + Fries & Coleslaw + Cold Drink 345ml", price: 999, hasSize: false, img: "/newlogo_ScholarPizza.png", tag: "Popular" },
+      { id: 47, name: "Fast Food Deal 2", desc: "2 Zinger Burger + 1 Chicken Burger + Pizza Fries + Fries & Coleslaw + 2 Cold Drinks", price: 1299, hasSize: false, img: "/newlogo_ScholarPizza.png", tag: "Family" },
+      { id: 48, name: "Fast Food Deal 3", desc: "2 Zinger + 2 Chicken Burger + Chicken Pasta + Fries & Coleslaw + 2 Cold Drinks", price: 1399, hasSize: false, img: "/newlogo_ScholarPizza.png", tag: "Family" },
+      { id: 49, name: "Midnight Deal 1", desc: "2 Regular Pizzas of your choice", price: 1299, hasSize: false, img: "/newlogo_ScholarPizza.png", tag: "🌙 Late Night" },
+      { id: 50, name: "Midnight Deal 2", desc: "1 Zinger Burger + 1 Regular Pizza + Pizza Fries", price: 749, hasSize: false, img: "/newlogo_ScholarPizza.png", tag: "🌙 Late Night" },
+      { id: 51, name: "Midnight Deal 3", desc: "5 Zinger Burgers with Fries", price: 1499, hasSize: false, img: "/newlogo_ScholarPizza.png", tag: "🌙 Late Night" },
+      { id: 52, name: "Midnight Deal 4", desc: "1 Regular Pizza + 1 Large Pizza + 1 Small Pizza", price: 1999, hasSize: false, img: "/newlogo_ScholarPizza.png", tag: "🌙 Late Night" },
+      { id: 53, name: "Midnight Deal 5", desc: "1 Turkish Pizza Large + 1 Crown Pizza Large", price: 2499, hasSize: false, img: "/newlogo_ScholarPizza.png", tag: "Premium" },
+      { id: 54, name: "Midnight Deal 6", desc: "3 Large Pizzas of your choice", price: 2600, hasSize: false, img: "/newlogo_ScholarPizza.png", tag: "Party" },
+      { id: 55, name: "Midnight Full Deal", desc: "1 Turkish Pizza Large + 1 Crown Pizza Large + Chicken Pasta + Chicken Lasania + Chicken Wings 5pcs", price: 3999, hasSize: false, img: "/newlogo_ScholarPizza.png", tag: "🎉 Ultimate" },
     ],
   },
 ];

@@ -47,8 +47,26 @@ export async function GET(request) {
       .collection("orders")
       .find({})
       .sort({ createdAt: -1 })
-      .limit(100)
+      .limit(500)
       .toArray();
+
+    const { searchParams } = new URL(request.url);
+    if (searchParams.get("format") === "csv") {
+      const header = "Date,Customer,Phone,Address,Items,Total,Payment,Status\n";
+      const rows = orders.map((o) => {
+        const itemsStr = (o.items || []).map((i) => `${i.name} x${i.qty}`).join("; ");
+        const date = new Date(o.createdAt).toLocaleString();
+        const esc = (s) => `"${String(s || "").replace(/"/g, '""')}"`;
+        return [esc(date), esc(o.customerName), esc(o.customerPhone), esc(o.customerAddress), esc(itemsStr), o.total, esc(o.paymentMethod), esc(o.orderStatus)].join(",");
+      });
+      const csv = header + rows.join("\n");
+      return new Response(csv, {
+        headers: {
+          "Content-Type": "text/csv",
+          "Content-Disposition": `attachment; filename="orders-${Date.now()}.csv"`,
+        },
+      });
+    }
 
     return NextResponse.json({ orders });
   } catch (error) {

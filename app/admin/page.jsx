@@ -148,7 +148,92 @@ function OrderCard({ order, onUpdateStatus, onUpdatePayment, onDelete }) {
   );
 }
 
+function StatsPanel() {
+  const [stats, setStats] = useState(null);
+  const [orders, setOrders] = useState([]);
+  const [dateFrom, setDateFrom] = useState("");
+  const [dateTo, setDateTo] = useState("");
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    fetch("/api/stats").then((r) => r.json()).then(setStats).catch(() => {});
+    fetch("/api/orders").then((r) => r.json()).then((d) => setOrders(d.orders || [])).catch(() => {});
+  }, []);
+
+  const filteredOrders = orders.filter((o) => {
+    const created = new Date(o.createdAt);
+    if (dateFrom && created < new Date(dateFrom)) return false;
+    if (dateTo && created > new Date(dateTo + "T23:59:59")) return false;
+    if (search) {
+      const q = search.toLowerCase();
+      if (!o.customerName?.toLowerCase().includes(q) && !o.customerPhone?.includes(q)) return false;
+    }
+    return true;
+  });
+
+  const downloadCsv = () => {
+    window.open("/api/orders?format=csv", "_blank");
+  };
+
+  const card = (label, value, sub) => (
+    <div style={{ background: "#fff", borderRadius: 14, padding: 16, border: "1px solid #f0ede8", flex: 1, minWidth: 140 }}>
+      <div style={{ fontSize: 11, color: "#888", fontWeight: 600, marginBottom: 6 }}>{label}</div>
+      <div style={{ fontSize: 22, fontWeight: 800, color: "#1a1a1a" }}>{value}</div>
+      {sub && <div style={{ fontSize: 11, color: "#25a244", marginTop: 2 }}>{sub}</div>}
+    </div>
+  );
+
+  return (
+    <div style={{ padding: 16, maxWidth: 700, margin: "0 auto" }}>
+      <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
+        {card("Today's Sales", stats ? `Rs. ${stats.today.total.toLocaleString()}` : "...", stats ? `${stats.today.count} orders` : "")}
+        {card("This Week", stats ? `Rs. ${stats.week.total.toLocaleString()}` : "...", stats ? `${stats.week.count} orders` : "")}
+        {card("This Month", stats ? `Rs. ${stats.month.total.toLocaleString()}` : "...", stats ? `${stats.month.count} orders` : "")}
+        {card("Avg Order Value", stats ? `Rs. ${stats.avgOrderValue.toLocaleString()}` : "...")}
+      </div>
+
+      {stats?.topItems?.length > 0 && (
+        <div style={{ background: "#fff", borderRadius: 14, padding: 16, border: "1px solid #f0ede8", marginBottom: 16 }}>
+          <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 10 }}>🏆 Best Selling Items</div>
+          {stats.topItems.map((it, i) => (
+            <div key={it.name} style={{ display: "flex", justifyContent: "space-between", padding: "6px 0", fontSize: 13, borderBottom: i < stats.topItems.length - 1 ? "1px solid #f5f2ee" : "none" }}>
+              <span>{i + 1}. {it.name}</span>
+              <span style={{ fontWeight: 700, color: "#c0340d" }}>{it.qty} sold</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div style={{ background: "#fff", borderRadius: 14, padding: 16, border: "1px solid #f0ede8", marginBottom: 16 }}>
+        <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 10 }}>🔍 Search & Export Orders</div>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
+          <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Name or phone..." style={{ flex: 1, minWidth: 140, padding: "9px 12px", borderRadius: 8, border: "1px solid #e0ddd8", fontSize: 13 }} />
+          <input type="date" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} style={{ padding: "9px 12px", borderRadius: 8, border: "1px solid #e0ddd8", fontSize: 13 }} />
+          <input type="date" value={dateTo} onChange={(e) => setDateTo(e.target.value)} style={{ padding: "9px 12px", borderRadius: 8, border: "1px solid #e0ddd8", fontSize: 13 }} />
+        </div>
+        <div style={{ fontSize: 12, color: "#888", marginBottom: 10 }}>{filteredOrders.length} order(s) found</div>
+        <button onClick={downloadCsv} style={{ width: "100%", background: "#25a244", color: "#fff", border: "none", borderRadius: 10, padding: "11px", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>
+          📥 Export All Orders to CSV
+        </button>
+      </div>
+
+      {(dateFrom || dateTo || search) && (
+        <div>
+          {filteredOrders.slice(0, 30).map((o) => (
+            <div key={o._id} style={{ background: "#fff", borderRadius: 10, padding: 12, marginBottom: 8, border: "1px solid #f0ede8", fontSize: 12 }}>
+              <div style={{ fontWeight: 700 }}>{o.customerName} · {o.customerPhone}</div>
+              <div style={{ color: "#888" }}>{new Date(o.createdAt).toLocaleString()}</div>
+              <div style={{ color: "#c0340d", fontWeight: 700 }}>Rs. {o.total?.toLocaleString()}</div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function Dashboard({ onLogout }) {
+  const [tab, setTab] = useState("orders");
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
@@ -205,12 +290,24 @@ function Dashboard({ onLogout }) {
   return (
     <div style={{ minHeight: "100vh", background: "#f9f6f2" }}>
       <div style={{ background: "#1a0a00", padding: "16px 20px", position: "sticky", top: 0, zIndex: 10, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <h1 style={{ color: "#fff", fontSize: 18, fontWeight: 800 }}>🍕 Scholar Pizza — Orders</h1>
+        <h1 style={{ color: "#fff", fontSize: 18, fontWeight: 800 }}>🍕 Scholar Pizza</h1>
         <button onClick={onLogout} style={{ background: "rgba(255,255,255,0.1)", color: "#fff", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 8, padding: "6px 12px", fontSize: 12, cursor: "pointer" }}>
           Logout
         </button>
       </div>
 
+      <div style={{ background: "#fff", borderBottom: "1px solid #f0ede8", position: "sticky", top: 53, zIndex: 9, display: "flex" }}>
+        <button onClick={() => setTab("orders")} style={{ flex: 1, padding: "12px", background: "none", border: "none", borderBottom: tab === "orders" ? "2px solid #c0340d" : "2px solid transparent", color: tab === "orders" ? "#c0340d" : "#888", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
+          📦 Orders
+        </button>
+        <button onClick={() => setTab("stats")} style={{ flex: 1, padding: "12px", background: "none", border: "none", borderBottom: tab === "stats" ? "2px solid #c0340d" : "2px solid transparent", color: tab === "stats" ? "#c0340d" : "#888", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>
+          📊 Dashboard
+        </button>
+      </div>
+
+      {tab === "stats" ? (
+        <StatsPanel />
+      ) : (
       <div style={{ padding: 16, maxWidth: 700, margin: "0 auto" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: 16 }}>
           <div style={{ background: "#fff", borderRadius: 12, padding: 14, textAlign: "center" }}>
@@ -248,6 +345,7 @@ function Dashboard({ onLogout }) {
           ))
         )}
       </div>
+      )}
     </div>
   );
 }
