@@ -41,7 +41,7 @@ export const categories = [
   { id: 4, name: "Shawarma", desc: "Arabic-style shawarma filling on a crispy base", price: 600, priceR: 900, priceL: 1500, hasSize: true, hasThree: true, img: "/Shawarma.png" },
   { id: 5, name: "Creamy Afghani", desc: "Rich creamy Afghani sauce with tender chicken", price: 600, priceR: 900, priceL: 1500, hasSize: true, hasThree: true, img: "/Creamy-Afghani.png" },
   { id: 6, name: "Spicy Lover", desc: "Extra hot & spicy for heat lovers 🌶️", price: 600, priceR: 900, priceL: 1500, hasSize: true, hasThree: true, img: "/Spicy-Lover.png", tag: "🌶️ Hot" },
-  { id: 7, name: "Argi Iani Tikka", desc: "Special Argi Iani marinated tikka with cheese", price: 600, priceR: 900, priceL: 1500, hasSize: true, hasThree: true, img: "/Argi-Iani-Tikka.png" },
+  { id: 7, name: "Afghani Tikka", desc: "Special Afghani marinated tikka with cheese", price: 600, priceR: 900, priceL: 1500, hasSize: true, hasThree: true, img: "/Argi-Iani-Tikka.png" },
   { id: 8, name: "Sicilian", desc: "Classic Italian-style Sicilian pizza", price: 600, priceR: 900, priceL: 1500, hasSize: true, hasThree: true, img: "/Sicilian.png" },
   { id: 9, name: "Malai Tikka", desc: "Creamy malai-marinated chicken, mild & rich", price: 600, priceR: 900, priceL: 1500, hasSize: true, hasThree: true, img: "/Malai-Tikka.png", tag: "Fan Fav" },
   { id: 10, name: "Hot N Spicy", desc: "Double the heat with our signature spicy blend", price: 600, priceR: 900, priceL: 1500, hasSize: true, hasThree: true, img: "/Hot-N-Spicy.png", tag: "🌶️ Hot" },
