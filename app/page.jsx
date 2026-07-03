@@ -38,7 +38,7 @@ function ItemCard({ item, onAdd }) {
   };
   return (
     <div style={{ background: "#fff", borderRadius: 16, overflow: "hidden", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", border: "1px solid #f0ede8", display: "flex", flexDirection: "column" }}>
-      <div style={{ position: "relative", width: "100%", aspectRatio: "1/1", background: "#f5f2ee", flexShrink: 0, overflow: "hidden", padding: "20px" }}>
+      <div style={{ position: "relative", width: "100%", aspectRatio: "1/1", background: "#f5f2ee", flexShrink: 0, overflow: "hidden", padding: "3px" }}>
       <img src={item.img} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", borderRadius: 8 }} loading="lazy" />     {item.tag && (
         <span style={{ position: "absolute", top: 8, left: 8, background: item.tag.includes("🌶") ? "#e53e3e" : item.tag.includes("🔥") || item.tag.includes("Deal") ? "#dd6b20" : "#c0340d", color: "#fff", borderRadius: 20, padding: "3px 10px", fontSize: 11, fontWeight: 700 }}>{item.tag}</span>
       )}
