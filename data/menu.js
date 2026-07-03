@@ -110,7 +110,7 @@ items: [
     desc: "Creamy & delicious",
     items: [
       { id: 35, name: "Chicken Pasta", desc: "Creamy white sauce pasta with tender chicken chunks", price: 600, hasSize: false, img: "/Chicken-Pasta.png" },
-{ id: 36, name: "Chicken Lasania", desc: "Layered lasagna with chicken & rich tomato-cheese sauce", price: 600, hasSize: false, img: "/Chicken-Lasania.png", tag: "Chef's Pick" },
+{ id: 36, name: "Chicken Lasagna", desc: "Layered lasagna with chicken & rich tomato-cheese sauce", price: 600, hasSize: false, img: "/Chicken-Lasania.png", tag: "Chef's Pick" },
      ],
   },
   {
