@@ -1,6 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import { restaurant, categories } from "../data/menu";
+
+const MAINTENANCE_MODE = true; // 🔴 true = orders band, false = orders wapis chalu
 
 function useCart() {
   const [cart, setCart] = useState([]);
@@ -197,6 +200,10 @@ export default function Home() {
   const currentCategory = categories.find((c) => c.id === activeCategory);
 
   const handleOrder = async (details) => {
+    if (MAINTENANCE_MODE) {
+      alert("⚠️ Site Under Maintenance\n\nOnline ordering is temporarily unavailable. Please contact us directly by phone to place your order.\n\nWe apologize for the inconvenience.");
+      return;
+    }
     if (cart.length === 0) return;
     try {
       await fetch("/api/orders", {
@@ -267,7 +274,7 @@ export default function Home() {
           ))}
         </div>
         <div style={{ position: "relative", display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
-          <button onClick={() => { window.location.href = `https://wa.me/${restaurant.whatsapp}?text=${encodeURIComponent("Hi! I want to order.")}`; }} style={{ background: "linear-gradient(135deg, #2fd669, #1eaa50)", color: "#fff", border: "none", borderRadius: 14, padding: "13px 24px", fontSize: 15, fontWeight: 800, cursor: "pointer", boxShadow: "0 6px 20px rgba(37,211,102,0.35)" }}>📱 Order on WhatsApp</button>
+          <button onClick={() => { if (MAINTENANCE_MODE) { alert("⚠️ Site Under Maintenance\n\nOnline ordering is temporarily unavailable. Please contact us directly by phone."); return; } window.location.href = `https://wa.me/${restaurant.whatsapp}?text=${encodeURIComponent("Hi! I want to order.")}`; }} style={{ background: "linear-gradient(135deg, #2fd669, #1eaa50)", color: "#fff", border: "none", borderRadius: 14, padding: "13px 24px", fontSize: 15, fontWeight: 800, cursor: "pointer", boxShadow: "0 6px 20px rgba(37,211,102,0.35)" }}>📱 Order on WhatsApp</button>
           <a href={`tel:+92${restaurant.phone.slice(1)}`} style={{ background: "rgba(255,255,255,0.06)", backdropFilter: "blur(6px)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.25)", borderRadius: 14, padding: "13px 24px", fontSize: 15, fontWeight: 700 }}>📞 Call Now</a>
         </div>
       </div>
